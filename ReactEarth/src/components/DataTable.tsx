@@ -6,14 +6,18 @@ import clsx from 'clsx';
 const DataTable = () => {
   const { data } = useEarthquake();
   const { selected, setSelected } = useEarthquakeStore();
+
+  // Local state to track which column is currently being sorted and in what direction
   const [sortConfig, setSortConfig] = useState({ key: 'time', direction: 'desc' });
 
+  // Sort the dataset based on the current sort configuration
   const sortedData = [...data].sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === 'asc' ? -1 : 1;
     if (a[sortConfig.key] > b[sortConfig.key]) return sortConfig.direction === 'asc' ? 1 : -1;
     return 0;
   });
 
+  // Handles user clicking a column header to toggle sort direction
   const requestSort = (key: string) => {
     let direction = 'asc';
     if (sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -22,11 +26,13 @@ const DataTable = () => {
     setSortConfig({ key, direction });
   };
 
+  // Displays an up/down arrow beside the sorted column
   const getSortIndicator = (key: string) => {
     if (sortConfig.key !== key) return null;
     return sortConfig.direction === 'asc' ? '↑' : '↓';
   };
 
+  // Applies conditional styling to magnitude values based on severity
   const formatMagnitude = (mag: number) => {
     if (mag >= 7) return <span className="text-red-600 font-bold">{mag.toFixed(1)}</span>;
     if (mag >= 5) return <span className="text-orange-500">{mag.toFixed(1)}</span>;
@@ -42,6 +48,7 @@ const DataTable = () => {
           <table className="w-full text-sm border-collapse">
             <thead className="bg-gray-100 sticky top-0">
             <tr>
+              {/* Table headers with sort handling */}
               {['time', 'place', 'mag', 'depth', 'latitude', 'longitude'].map((key) => (
                   <th
                       key={key}
@@ -59,6 +66,7 @@ const DataTable = () => {
             </tr>
             </thead>
             <tbody>
+            {/* Render each earthquake row, with highlight if selected */}
             {sortedData.map((eq, idx) => (
                 <tr
                     key={eq.time + idx}

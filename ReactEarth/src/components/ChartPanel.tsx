@@ -10,7 +10,7 @@ import {
 import { useEarthquake } from "../contexts/EarthquakeContext.tsx";
 import { useEarthquakeStore } from '../store/useEarthquakeStore';
 
-
+// Defines the available numeric fields for axis selection
 const numericFields = [
   { value: 'mag', label: 'Magnitude' },
   { value: 'depth', label: 'Depth (km)' },
@@ -65,7 +65,7 @@ const ChartPanel = () => {
             </select>
           </div>
         </div>
-
+        {/* Victory chart with configured axes and scatter plot */}
         <div className="border rounded p-2 bg-white">
           <VictoryChart
               theme={VictoryTheme.material}
@@ -73,6 +73,7 @@ const ChartPanel = () => {
               height={350}
               padding={{ top: 40, bottom: 60, left: 60, right: 40 }}
           >
+            {/* Chart title */}
             <VictoryLabel
                 text={`${getFieldLabel(xField)} vs ${getFieldLabel(yField)}`}
                 x={225}
@@ -80,7 +81,7 @@ const ChartPanel = () => {
                 textAnchor="middle"
                 style={{ fontSize: 16, fontWeight: 'bold' }}
             />
-
+            {/* X and Y axis configuration */}
             <VictoryAxis
                 label={getFieldLabel(xField)}
                 style={{
@@ -98,7 +99,7 @@ const ChartPanel = () => {
                   grid: { stroke: '#ECEFF1', strokeDasharray: '4,4' },
                 }}
             />
-
+            {/* Scatter plot configuration */}
             <VictoryScatter
                 data={data}
                 x={xField}
@@ -155,7 +156,7 @@ const ChartPanel = () => {
                 ]}
             />
           </VictoryChart>
-
+          {/* Info box for selected earthquake */}
           {selected && (
               <div className="mt-4 text-sm p-3 border rounded bg-blue-50">
                 <p className="mb-1 font-medium text-blue-800">Selected Earthquake</p>

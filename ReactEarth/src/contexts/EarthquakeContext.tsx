@@ -19,6 +19,7 @@ export function EarthquakeProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Load earthquake data from the local JSON file on initial render
     fetch("/data/earthquakes.json")
         .then((res) => res.json())
         .then((json) => {
