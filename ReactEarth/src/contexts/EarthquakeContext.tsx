@@ -5,11 +5,9 @@ import {
   useState,
   useEffect,
 } from "react";
-import type { Earthquake } from "../types/Earthquake"
+import type { Earthquake } from "../types/Earthquake";
 
 type EarthquakeContextType = {
-  selected: Earthquake | null;
-  setSelected: (eq: Earthquake | null) => void;
   data: Earthquake[];
   loading: boolean;
 };
@@ -17,7 +15,6 @@ type EarthquakeContextType = {
 const EarthquakeContext = createContext<EarthquakeContextType | null>(null);
 
 export function EarthquakeProvider({ children }: { children: ReactNode }) {
-  const [selected, setSelected] = useState<Earthquake | null>(null);
   const [data, setData] = useState<Earthquake[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +32,7 @@ export function EarthquakeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-      <EarthquakeContext.Provider value={{ selected, setSelected, data, loading }}>
+      <EarthquakeContext.Provider value={{ data, loading }}>
         {children}
       </EarthquakeContext.Provider>
   );
