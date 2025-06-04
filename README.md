@@ -27,3 +27,15 @@ Victory was added for data visualization needs:
 [https://nearform.com/open-source/victory/](https://nearform.com/open-source/victory/)
 
 ---
+
+### State Management with Context
+
+An `EarthquakeContext` was implemented using React Context to manage shared global state. It handles two primary pieces of state:
+
+* The list of earthquake records
+* The currently selected earthquake (used for interactivity between chart and table)
+
+The `EarthquakeProvider` fetches the earthquake dataset (`/data/earthquakes.json`) once on mount and stores it in context, making it accessible to all components without prop drilling. The provider wraps the application inside `main.tsx` to ensure the context is available globally.
+
+This design keeps the data-fetching logic centralized and simplifies state sharing across views like `ChartPanel` and `DataTable`.
+
