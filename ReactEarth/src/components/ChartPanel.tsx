@@ -8,6 +8,8 @@ import {
   VictoryLabel,
 } from 'victory';
 import { useEarthquake } from "../contexts/EarthquakeContext.tsx";
+import { useEarthquakeStore } from '../store/useEarthquakeStore';
+
 
 const numericFields = [
   { value: 'mag', label: 'Magnitude' },
@@ -17,7 +19,9 @@ const numericFields = [
 ];
 
 const ChartPanel = () => {
-  const { data, selected, setSelected } = useEarthquake();
+  const { data } = useEarthquake();
+  const { selected, setSelected } = useEarthquakeStore();
+
   const [xField, setXField] = useState('mag');
   const [yField, setYField] = useState('depth');
 

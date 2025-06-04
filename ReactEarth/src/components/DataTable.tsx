@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { useEarthquake } from "../contexts/EarthquakeContext.tsx"
+import { useEarthquake } from "../contexts/EarthquakeContext.tsx";
+import { useEarthquakeStore } from '../store/useEarthquakeStore';
 import clsx from 'clsx';
 
 const DataTable = () => {
-  const { data, selected, setSelected } = useEarthquake();
+  const { data } = useEarthquake();
+  const { selected, setSelected } = useEarthquakeStore();
   const [sortConfig, setSortConfig] = useState({ key: 'time', direction: 'desc' });
 
   const sortedData = [...data].sort((a, b) => {
