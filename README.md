@@ -39,3 +39,14 @@ The `EarthquakeProvider` fetches the earthquake dataset (`/data/earthquakes.json
 
 This design keeps the data-fetching logic centralized and simplifies state sharing across views like `ChartPanel` and `DataTable`.
 
+---
+
+### Visualization
+
+The UI is split into a responsive two-panel layout:
+
+* **Chart Panel**: Built using Victory, the chart visualizes earthquake records using a scatter plot. Users can select different numeric fields for the X and Y axes via dropdowns. Each point represents a row in the dataset, and tooltips provide contextual information on hover. Clicking a point highlights it and syncs selection with the table view.
+
+* **Data Table**: Displays a scrollable table of all earthquake records with sortable columns. Row selection is synced with the chart panel, providing bidirectional interactivity. The table layout was kept minimal using Tailwind for better readability.
+
+Both components remain in sync through the global context, ensuring a cohesive and interactive experience.
