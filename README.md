@@ -1,11 +1,3 @@
-## Project Setup
-
-This project is a React + TypeScript application bootstrapped with Vite and styled using Tailwind CSS. It includes client-side routing with TanStack Router and charting with Victory.
-
-Here’s a clean and concise **Installation** section you can add to your README:
-
----
-
 ### Installation
 
 To run this project locally:
